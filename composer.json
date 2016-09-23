@@ -18,8 +18,7 @@
     ],
     "require": {
         "yiisoft/yii2": "*",
-        "cornernote/yii2-returnurl": "*",
-        "dmstr/yii2-web": "dev-master"
+        "cornernote/yii2-returnurl": "*"
     },
     "autoload": {
         "psr-4": {

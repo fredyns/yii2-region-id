@@ -2,14 +2,19 @@
 
 namespace fredyns\daerahIndonesia;
 
-use dmstr\web\traits\AccessBehaviorTrait;
-
+/**
+ * daerahIndonesia module definition class
+ */
 class Module extends \yii\base\Module
 {
-    use AccessBehaviorTrait;
-
+    /**
+     * @inheritdoc
+     */
     public $controllerNamespace = 'fredyns\daerahIndonesia\controllers';
 
+    /**
+     * @inheritdoc
+     */
     public function init()
     {
         parent::init();
