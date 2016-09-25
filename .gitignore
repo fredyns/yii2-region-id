@@ -12,3 +12,6 @@ nbproject
 
 # windows thumbnail cache
 Thumbs.db
+
+# workbench temporary file
+*.mwb.bak
