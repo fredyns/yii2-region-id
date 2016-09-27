@@ -6,21 +6,21 @@ use \dmstr\bootstrap\Tabs;
 use yii\helpers\StringHelper;
 
 /**
-* @var yii\web\View $this
-* @var fredyns\daerahIndonesia\models\Provinsi $model
-* @var yii\widgets\ActiveForm $form
-*/
-
+ * @var yii\web\View $this
+ * @var fredyns\daerahIndonesia\models\Provinsi $model
+ * @var yii\widgets\ActiveForm $form
+ */
 ?>
 
 <div class="provinsi-form">
 
-    <?php $form = ActiveForm::begin([
-    'id' => 'Provinsi',
-    'layout' => 'horizontal',
-    'enableClientValidation' => true,
-    'errorSummaryCssClass' => 'error-summary alert alert-error'
-    ]
+    <?php
+    $form = ActiveForm::begin([
+            'id'                     => 'Provinsi',
+            'layout'                 => 'horizontal',
+            'enableClientValidation' => true,
+            'errorSummaryCssClass'   => 'error-summary alert alert-error'
+            ]
     );
     ?>
 
@@ -28,41 +28,39 @@ use yii\helpers\StringHelper;
         <?php $this->beginBlock('main'); ?>
 
         <p>
-            
-			<?= $form->field($model, 'id')->textInput() ?>
-			<?= $form->field($model, 'created_at')->textInput() ?>
-			<?= $form->field($model, 'updated_at')->textInput() ?>
-			<?= $form->field($model, 'created_by')->textInput() ?>
-			<?= $form->field($model, 'updated_by')->textInput() ?>
-			<?= $form->field($model, 'nomor')->textInput(['maxlength' => true]) ?>
-			<?= $form->field($model, 'nama')->textInput(['maxlength' => true]) ?>
-			<?= $form->field($model, 'singkatan')->textInput(['maxlength' => true]) ?>
+
+            <?= $form->field($model, 'nomor')->textInput(['maxlength' => true]) ?>
+            <?= $form->field($model, 'nama')->textInput(['maxlength' => true]) ?>
+            <?= $form->field($model, 'singkatan')->textInput(['maxlength' => true]) ?>
         </p>
         <?php $this->endBlock(); ?>
-        
+
         <?=
-    Tabs::widget(
-                 [
-                   'encodeLabels' => false,
-                     'items' => [ [
-    'label'   => Yii::t('app', StringHelper::basename('fredyns\daerahIndonesia\models\Provinsi')),
-    'content' => $this->blocks['main'],
-    'active'  => true,
-], ]
-                 ]
-    );
-    ?>
+        Tabs::widget(
+            [
+                'encodeLabels' => false,
+                'items'        => [
+                    [
+                        'label'   => Yii::t('app', StringHelper::basename('fredyns\daerahIndonesia\models\Provinsi')),
+                        'content' => $this->blocks['main'],
+                        'active'  => true,
+                    ],
+                ]
+            ]
+        );
+        ?>
         <hr/>
 
         <?php echo $form->errorSummary($model); ?>
 
-        <?= Html::submitButton(
-        '<span class="glyphicon glyphicon-check"></span> ' .
-        ($model->isNewRecord ? 'Create' : 'Save'),
-        [
-        'id' => 'save-' . $model->formName(),
-        'class' => 'btn btn-success'
-        ]
+        <?=
+        Html::submitButton(
+            '<span class="glyphicon glyphicon-check"></span> '.
+            ($model->isNewRecord ? 'Create' : 'Save'),
+            [
+            'id'    => 'save-'.$model->formName(),
+            'class' => 'btn btn-success'
+            ]
         );
         ?>
 
