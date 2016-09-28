@@ -108,7 +108,6 @@ else
                 },
                     'contentOptions' => ['nowrap' => 'nowrap']
                 ],
-                'id',
                 'nomor',
                 'nama',
                 'singkatan',

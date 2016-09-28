@@ -34,7 +34,7 @@ else
     ?>
 
     <h1>
-        <?= Yii::t('app', 'Kodepo') ?>
+        <?= Yii::t('app', 'Kodepos') ?>
         <small>
             List
         </small>
