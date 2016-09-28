@@ -1,3 +1,6 @@
+<?php
+$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Daerah Indonesia'), 'url' => ['/'.\Yii::$app->controller->module->id]];
+?>
 <div class="daerahIndonesia-default-index">
     <h1><?= $this->context->action->uniqueId ?></h1>
     <p>

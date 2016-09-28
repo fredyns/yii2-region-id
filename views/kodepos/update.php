@@ -6,9 +6,10 @@ use yii\helpers\Html;
  * @var yii\web\View $this
  * @var fredyns\daerahIndonesia\models\Kodepos $model
  */
-$this->title                   = Yii::t('app', 'Kodepos').$model->id.', '.'Edit';
+$this->title                   = Yii::t('app', 'Kodepos').' #'.$model->id.', '.'Edit';
+$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Daerah Indonesia'), 'url' => ['/'.\Yii::$app->controller->module->id]];
 $this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Kodepos'), 'url' => ['index']];
-$this->params['breadcrumbs'][] = ['label' => (string) $model->id, 'url' => ['view', 'id' => $model->id]];
+$this->params['breadcrumbs'][] = ['label' => '#'.$model->id, 'url' => ['view', 'id' => $model->id]];
 $this->params['breadcrumbs'][] = 'Edit';
 ?>
 <div class="giiant-crud kodepos-update">
@@ -16,7 +17,7 @@ $this->params['breadcrumbs'][] = 'Edit';
     <h1>
         <?= Yii::t('app', 'Kodepos') ?>
         <small>
-            <?= $model->id ?>
+           #<?= $model->id ?>
         </small>
     </h1>
 

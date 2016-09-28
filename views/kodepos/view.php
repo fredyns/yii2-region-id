@@ -8,14 +8,15 @@ use yii\widgets\Pjax;
 use dmstr\bootstrap\Tabs;
 
 /**
-* @var yii\web\View $this
-* @var fredyns\daerahIndonesia\models\Kodepos $model
-*/
+ * @var yii\web\View $this
+ * @var fredyns\daerahIndonesia\models\Kodepos $model
+ */
 $copyParams = $model->attributes;
 
-$this->title = Yii::t('app', 'Kodepos');
+$this->title                   = Yii::t('app', 'Kodepos').' #'.$model->id.', '.'View';
+$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Daerah Indonesia'), 'url' => ['/'.\Yii::$app->controller->module->id]];
 $this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Kodepos'), 'url' => ['index']];
-$this->params['breadcrumbs'][] = ['label' => (string)$model->id, 'url' => ['view', 'id' => $model->id]];
+$this->params['breadcrumbs'][] = ['label' => '#'.$model->id, 'url' => ['view', 'id' => $model->id]];
 $this->params['breadcrumbs'][] = 'View';
 ?>
 <div class="giiant-crud kodepos-view">
@@ -24,14 +25,16 @@ $this->params['breadcrumbs'][] = 'View';
     <?php if (\Yii::$app->session->getFlash('deleteError') !== null) : ?>
         <span class="alert alert-info alert-dismissible" role="alert">
             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-            <span aria-hidden="true">&times;</span></button>
+                <span aria-hidden="true">&times;</span></button>
             <?= \Yii::$app->session->getFlash('deleteError') ?>
         </span>
     <?php endif; ?>
 
     <h1>
-        <?= Yii::t('app', 'Kodepos') ?>        <small>
-            <?= $model->id ?>        </small>
+        <?= Yii::t('app', 'Kodepos') ?>
+        <small>
+           #<?= $model->id ?>
+        </small>
     </h1>
 
 
@@ -39,93 +42,100 @@ $this->params['breadcrumbs'][] = 'View';
 
         <!-- menu buttons -->
         <div class='pull-left'>
-            <?= Html::a(
-            '<span class="glyphicon glyphicon-pencil"></span> ' . 'Edit',
-            [ 'update', 'id' => $model->id],
-            ['class' => 'btn btn-info']) ?>
+            <?=
+            Html::a(
+                '<span class="glyphicon glyphicon-pencil"></span> '.'Edit', [ 'update', 'id' => $model->id],
+                ['class' => 'btn btn-info'])
+            ?>
 
-            <?= Html::a(
-            '<span class="glyphicon glyphicon-copy"></span> ' . 'Copy',
-            ['create', 'id' => $model->id, 'Kodepos'=>$copyParams],
-            ['class' => 'btn btn-success']) ?>
+            <?=
+            Html::a(
+                '<span class="glyphicon glyphicon-copy"></span> '.'Copy',
+                ['create', 'id' => $model->id, 'Kodepos' => $copyParams], ['class' => 'btn btn-success'])
+            ?>
 
-            <?= Html::a(
-            '<span class="glyphicon glyphicon-plus"></span> ' . 'New',
-            ['create'],
-            ['class' => 'btn btn-success']) ?>
+            <?=
+            Html::a(
+                '<span class="glyphicon glyphicon-plus"></span> '.'New', ['create'], ['class' => 'btn btn-success'])
+            ?>
         </div>
 
         <div class="pull-right">
-            <?= Html::a('<span class="glyphicon glyphicon-list"></span> '
-            . 'Full list', ['index'], ['class'=>'btn btn-default']) ?>
+            <?=
+            Html::a('<span class="glyphicon glyphicon-list"></span> '
+                .'Full list', ['index'], ['class' => 'btn btn-default'])
+            ?>
         </div>
 
     </div>
 
     <hr />
 
-    <?php $this->beginBlock('fredyns\daerahIndonesia\models\Kodepos'); ?>
+    <?php $this->beginBlock('Kodepos'); ?>
 
-    
-    <?= DetailView::widget([
-    'model' => $model,
-    'attributes' => [
+
+    <?=
+    DetailView::widget([
+        'model'      => $model,
+        'attributes' => [
             'id',
-        'created_at',
-        'updated_at',
-        'created_by',
-        'updated_by',
-        'nomor',
+            'nomor',
+            [
+                'format'    => 'html',
+                'attribute' => 'kelurahan_id',
+                'value'     => ($model->getKelurahan()->one() ? Html::a($model->getKelurahan()->one()->id,
+                        ['kelurahan/view', 'id' => $model->getKelurahan()->one()->id,]) : '<span class="label label-warning">?</span>'),
+            ],
+            [
+                'format'    => 'html',
+                'attribute' => 'kecamatan_id',
+                'value'     => ($model->getKecamatan()->one() ? Html::a($model->getKecamatan()->one()->id,
+                        ['kecamatan/view', 'id' => $model->getKecamatan()->one()->id,]) : '<span class="label label-warning">?</span>'),
+            ],
+            [
+                'format'    => 'html',
+                'attribute' => 'kota_id',
+                'value'     => ($model->getKota()->one() ? Html::a($model->getKota()->one()->id,
+                        ['kota/view', 'id' => $model->getKota()->one()->id,]) : '<span class="label label-warning">?</span>'),
+            ],
+            [
+                'format'    => 'html',
+                'attribute' => 'provinsi_id',
+                'value'     => ($model->getProvinsi()->one() ? Html::a($model->getProvinsi()->one()->id,
+                        ['provinsi/view', 'id' => $model->getProvinsi()->one()->id,]) : '<span class="label label-warning">?</span>'),
+            ],
+        ],
+    ]);
+    ?>
 
-[
-    'format' => 'html',
-    'attribute' => 'kelurahan_id',
-    'value' => ($model->getKelurahan()->one() ? Html::a($model->getKelurahan()->one()->id, ['kelurahan/view', 'id' => $model->getKelurahan()->one()->id,]) : '<span class="label label-warning">?</span>'),
-],
 
-[
-    'format' => 'html',
-    'attribute' => 'kecamatan_id',
-    'value' => ($model->getKecamatan()->one() ? Html::a($model->getKecamatan()->one()->id, ['kecamatan/view', 'id' => $model->getKecamatan()->one()->id,]) : '<span class="label label-warning">?</span>'),
-],
-
-[
-    'format' => 'html',
-    'attribute' => 'kota_id',
-    'value' => ($model->getKota()->one() ? Html::a($model->getKota()->one()->id, ['kota/view', 'id' => $model->getKota()->one()->id,]) : '<span class="label label-warning">?</span>'),
-],
-
-[
-    'format' => 'html',
-    'attribute' => 'provinsi_id',
-    'value' => ($model->getProvinsi()->one() ? Html::a($model->getProvinsi()->one()->id, ['provinsi/view', 'id' => $model->getProvinsi()->one()->id,]) : '<span class="label label-warning">?</span>'),
-],
-    ],
-    ]); ?>
-
-    
     <hr/>
 
-    <?= Html::a('<span class="glyphicon glyphicon-trash"></span> ' . 'Delete', ['delete', 'id' => $model->id],
-    [
-    'class' => 'btn btn-danger',
-    'data-confirm' => '' . 'Are you sure to delete this item?' . '',
-    'data-method' => 'post',
-    ]); ?>
+    <?=
+    Html::a('<span class="glyphicon glyphicon-trash"></span> '.'Delete', ['delete', 'id' => $model->id],
+        [
+        'class'        => 'btn btn-danger',
+        'data-confirm' => ''.'Are you sure to delete this item?'.'',
+        'data-method'  => 'post',
+    ]);
+    ?>
     <?php $this->endBlock(); ?>
 
 
-    
-    <?= Tabs::widget(
-                 [
-                     'id' => 'relation-tabs',
-                     'encodeLabels' => false,
-                     'items' => [ [
-    'label'   => '<b class=""># '.$model->id.'</b>',
-    'content' => $this->blocks['fredyns\daerahIndonesia\models\Kodepos'],
-    'active'  => true,
-], ]
-                 ]
+
+    <?=
+    Tabs::widget(
+        [
+            'id'           => 'relation-tabs',
+            'encodeLabels' => false,
+            'items'        => [
+                [
+                    'label'   => '<b class=""># '.$model->id.'</b>',
+                    'content' => $this->blocks['Kodepos'],
+                    'active'  => true,
+                ],
+            ]
+        ]
     );
     ?>
 </div>

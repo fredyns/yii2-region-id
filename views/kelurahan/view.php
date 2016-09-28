@@ -13,9 +13,10 @@ use dmstr\bootstrap\Tabs;
  */
 $copyParams = $model->attributes;
 
-$this->title                   = Yii::t('app', 'Kelurahan');
+$this->title                   = Yii::t('app', 'Kelurahan').' #'.$model->id.', '.'View';
+$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Daerah Indonesia'), 'url' => ['/'.\Yii::$app->controller->module->id]];
 $this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Kelurahans'), 'url' => ['index']];
-$this->params['breadcrumbs'][] = ['label' => (string) $model->id, 'url' => ['view', 'id' => $model->id]];
+$this->params['breadcrumbs'][] = ['label' => '#'.$model->id, 'url' => ['view', 'id' => $model->id]];
 $this->params['breadcrumbs'][] = 'View';
 ?>
 <div class="giiant-crud kelurahan-view">
@@ -32,7 +33,7 @@ $this->params['breadcrumbs'][] = 'View';
     <h1>
         <?= Yii::t('app', 'Kelurahan') ?>
         <small>
-            <?= $model->id ?>
+           #<?= $model->id ?>
         </small>
     </h1>
 

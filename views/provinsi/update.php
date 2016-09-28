@@ -6,9 +6,10 @@ use yii\helpers\Html;
  * @var yii\web\View $this
  * @var fredyns\daerahIndonesia\models\Provinsi $model
  */
-$this->title                   = Yii::t('app', 'Provinsi').$model->id.', '.'Edit';
-$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Provinsis'), 'url' => ['index']];
-$this->params['breadcrumbs'][] = ['label' => (string) $model->id, 'url' => ['view', 'id' => $model->id]];
+$this->title                   = Yii::t('app', 'Provinsi').' #'.$model->id.', '.'Edit';
+$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Daerah Indonesia'), 'url' => ['/'.\Yii::$app->controller->module->id]];
+$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Provinsi'), 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => '#'.$model->id, 'url' => ['view', 'id' => $model->id]];
 $this->params['breadcrumbs'][] = 'Edit';
 ?>
 <div class="giiant-crud provinsi-update">
@@ -16,7 +17,7 @@ $this->params['breadcrumbs'][] = 'Edit';
     <h1>
         <?= Yii::t('app', 'Provinsi') ?>
         <small>
-            <?= $model->id ?>
+           #<?= $model->id ?>
         </small>
     </h1>
 

@@ -7,6 +7,7 @@ use yii\helpers\Html;
  * @var fredyns\daerahIndonesia\models\Kota $model
  */
 $this->title                   = 'Create';
+$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Daerah Indonesia'), 'url' => ['/'.\Yii::$app->controller->module->id]];
 $this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Kotas'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>

@@ -9,6 +9,10 @@ use yii\grid\GridView;
  * @var yii\data\ActiveDataProvider $dataProvider
  * @var fredyns\daerahIndonesia\models\search\KecamatanSearch $searchModel
  */
+$this->title                   = Yii::t('app', 'Kecamatan');
+$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Daerah Indonesia'), 'url' => ['/'.\Yii::$app->controller->module->id]];
+$this->params['breadcrumbs'][] = $this->title;
+
 if (isset($actionColumnTemplates))
 {
     $actionColumnTemplate       = implode(' ', $actionColumnTemplates);

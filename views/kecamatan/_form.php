@@ -49,7 +49,7 @@ use yii\helpers\StringHelper;
                 'encodeLabels' => false,
                 'items'        => [
                     [
-                        'label'   => Yii::t('app', StringHelper::basename('fredyns\daerahIndonesia\models\Kecamatan')),
+                        'label'   => Yii::t('app', StringHelper::basename('Kecamatan')),
                         'content' => $this->blocks['main'],
                         'active'  => true,
                     ],
