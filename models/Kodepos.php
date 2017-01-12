@@ -18,9 +18,6 @@ use fredyns\daerahIndonesia\behaviors\KelurahanBehavior;
  */
 class Kodepos extends BaseKodepos
 {
-    public $provinsi_id;
-    public $kota_id;
-    public $kecamatan_id;
 
     /**
      * @inheritdoc
