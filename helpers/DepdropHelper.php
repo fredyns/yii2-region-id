@@ -36,23 +36,11 @@ class DepdropHelper
             if ($filter instanceof \Closure) {
                 $filter($query);
             } else if (is_array($filter)) {
-                $condition = [];
-
-                foreach ($filter as $key => $value) {
-                    if (is_string($key) && is_scalar($value)) {
-                        $condition[$key] = $value;
-                    } else if (is_array($value)) {
-                        $query->andFilterWhere($value);
-                    }
-                }
-
-                if ($condition) {
-                    $query->andFilterWhere($condition);
-                }
+                $query->andFilterWhere($filter);
             }
 
             $data = $query->all();
-            $output = ArrayHelper::toArray($data, ['id' => $idField, 'name' => $nameField]);
+            $output = ArrayHelper::toArray($data, [$modelClass => ['id' => $idField, 'name' => $nameField]]);
         }
 
         return Json::encode(['output' => $output, 'selected' => $selected]);

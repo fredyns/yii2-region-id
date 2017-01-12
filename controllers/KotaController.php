@@ -22,7 +22,9 @@ class KotaController extends \fredyns\daerahIndonesia\controllers\base\KotaContr
     public function actionDepdropOptions($selected = 0)
     {
         echo \fredyns\daerahIndonesia\helpers\DepdropHelper::getOptionData([
-            'modelClass' => Provinsi::className(),
+            'modelClass' => Kota::className(),
+            'idField' => 'id',
+            'nameField' => 'nama',
             'parents' => [
                 'provinsi_id' => function($value) {
                     return ($value > 0) ? $value : "";

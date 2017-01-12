@@ -2,7 +2,7 @@
 
 namespace fredyns\daerahIndonesia\controllers;
 
-use fredyns\daerahIndonesia\models\Kecamatan;
+use fredyns\daerahIndonesia\models\Kelurahan;
 
 /**
  * This is the class for controller "KelurahanController".
@@ -19,7 +19,9 @@ class KelurahanController extends \fredyns\daerahIndonesia\controllers\base\Kelu
     public function actionDepdropOptions($selected = 0)
     {
         echo \fredyns\daerahIndonesia\helpers\DepdropHelper::getOptionData([
-            'modelClass' => Kecamatan::className(),
+            'modelClass' => Kelurahan::className(),
+            'idField' => 'id',
+            'nameField' => 'nama',
             'parents' => [
                 'provinsi_id' => function($value) {
                     return ($value > 0) ? $value : "";
