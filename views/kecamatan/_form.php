@@ -1,25 +1,30 @@
 <?php
 
 use yii\helpers\Html;
-use yii\bootstrap\ActiveForm;
-use \dmstr\bootstrap\Tabs;
+use yii\helpers\Url;
 use yii\helpers\StringHelper;
+use yii\bootstrap\ActiveForm;
+use dmstr\bootstrap\Tabs;
+use kartik\select2\Select2;
+use kartik\depdrop\DepDrop;
+use fredyns\daerahIndonesia\models\Provinsi;
 
 /**
  * @var yii\web\View $this
  * @var fredyns\daerahIndonesia\models\Kecamatan $model
  * @var yii\widgets\ActiveForm $form
  */
+$moduleId = Yii::$app->controller->module->id;
 ?>
 
 <div class="kecamatan-form">
 
     <?php
     $form = ActiveForm::begin([
-            'id'                     => 'Kecamatan',
-            'layout'                 => 'horizontal',
+            'id' => 'Kecamatan',
+            'layout' => 'horizontal',
             'enableClientValidation' => true,
-            'errorSummaryCssClass'   => 'error-summary alert alert-error'
+            'errorSummaryCssClass' => 'error-summary alert alert-error'
             ]
     );
     ?>
@@ -32,11 +37,50 @@ use yii\helpers\StringHelper;
 
             <?= $form->field($model, 'nomor')->textInput(['maxlength' => true]) ?>
             <?= $form->field($model, 'nama')->textInput(['maxlength' => true]) ?>
+
             <?=
-            $form->field($model, 'kota_id')->dropDownList(
-                \yii\helpers\ArrayHelper::map(fredyns\daerahIndonesia\models\Kota::find()->all(), 'id', 'id'),
-                ['prompt' => 'Select']
-            );
+                $form
+                ->field($model, 'kota_id')
+                ->widget(DepDrop::classname(),
+                    [
+                    'data' => [],
+                    'type' => DepDrop::TYPE_SELECT2,
+                    'select2Options' => [
+                        'pluginOptions' => [
+                            'multiple' => FALSE,
+                            'allowClear' => TRUE,
+                            'tags' => TRUE,
+                            'maximumInputLength' => 255,
+                        ],
+                    ],
+                    'pluginOptions' => [
+                        'initialize' => TRUE,
+                        'placeholder' => 'Pilih atau ketik nama Kota',
+                        'depends' => ['kecamatan-provinsi_id'],
+                        'url' => Url::to([
+                            "/{$moduleId}/kota/depdrop-options",
+                            'selected' => $model->kota_id,
+                        ]),
+                        'loadingText' => 'Memuat Kota ...',
+                    ],
+            ]);
+            ?>
+
+            <?=
+                $form
+                ->field($model, 'provinsi_id')
+                ->widget(Select2::classname(),
+                    [
+                    'data' => Provinsi::options(),
+                    'pluginOptions' =>
+                    [
+                        'placeholder' => 'Pilih atau ketik nama Provinsi',
+                        'multiple' => FALSE,
+                        'allowClear' => TRUE,
+                        'tags' => TRUE,
+                        'maximumInputLength' => 255, /* country name maxlength */
+                    ],
+            ]);
             ?>
 
         </p>
@@ -47,11 +91,11 @@ use yii\helpers\StringHelper;
         Tabs::widget(
             [
                 'encodeLabels' => false,
-                'items'        => [
+                'items' => [
                     [
-                        'label'   => Yii::t('app', StringHelper::basename('Kecamatan')),
+                        'label' => Yii::t('app', StringHelper::basename('Kecamatan')),
                         'content' => $this->blocks['main'],
-                        'active'  => true,
+                        'active' => true,
                     ],
                 ]
             ]
@@ -66,7 +110,7 @@ use yii\helpers\StringHelper;
             '<span class="glyphicon glyphicon-check"></span> '.
             ($model->isNewRecord ? 'Create' : 'Save'),
             [
-            'id'    => 'save-'.$model->formName(),
+            'id' => 'save-'.$model->formName(),
             'class' => 'btn btn-success'
             ]
         );

@@ -1,25 +1,29 @@
 <?php
 
-use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
-use \dmstr\bootstrap\Tabs;
+use yii\helpers\ArrayHelper;
+use yii\helpers\Html;
 use yii\helpers\StringHelper;
+use dmstr\bootstrap\Tabs;
+use kartik\select2\Select2;
+use fredyns\daerahIndonesia\models\Provinsi;
 
 /**
  * @var yii\web\View $this
  * @var fredyns\daerahIndonesia\models\Kota $model
  * @var yii\widgets\ActiveForm $form
  */
+$moduleId = Yii::$app->controller->module->id;
 ?>
 
 <div class="kota-form">
 
     <?php
     $form = ActiveForm::begin([
-            'id'                     => 'Kota',
-            'layout'                 => 'horizontal',
+            'id' => 'Kota',
+            'layout' => 'horizontal',
             'enableClientValidation' => true,
-            'errorSummaryCssClass'   => 'error-summary alert alert-error'
+            'errorSummaryCssClass' => 'error-summary alert alert-error'
             ]
     );
     ?>
@@ -33,10 +37,20 @@ use yii\helpers\StringHelper;
             <?= $form->field($model, 'nama')->textInput(['maxlength' => true]) ?>
             <?= $form->field($model, 'singkatan')->textInput(['maxlength' => true]) ?>
             <?=
-            $form->field($model, 'provinsi_id')->dropDownList(
-                \yii\helpers\ArrayHelper::map(fredyns\daerahIndonesia\models\Provinsi::find()->all(), 'id', 'id'),
-                ['prompt' => 'Select']
-            );
+                $form
+                ->field($model, 'provinsi_id')
+                ->widget(Select2::classname(),
+                    [
+                    'data' => Provinsi::options(),
+                    'pluginOptions' =>
+                    [
+                        'placeholder' => 'Pilih atau ketikkan provinsi',
+                        'multiple' => FALSE,
+                        'allowClear' => TRUE,
+                        'tags' => TRUE,
+                        'maximumInputLength' => 255, /* country name maxlength */
+                    ],
+            ]);
             ?>
         </p>
         <?php $this->endBlock(); ?>
@@ -45,11 +59,11 @@ use yii\helpers\StringHelper;
         Tabs::widget(
             [
                 'encodeLabels' => false,
-                'items'        => [
+                'items' => [
                     [
-                        'label'   => Yii::t('app', StringHelper::basename('Kota')),
+                        'label' => Yii::t('app', StringHelper::basename('Kota')),
                         'content' => $this->blocks['main'],
-                        'active'  => true,
+                        'active' => true,
                     ],
                 ]
             ]
@@ -64,7 +78,7 @@ use yii\helpers\StringHelper;
             '<span class="glyphicon glyphicon-check"></span> '.
             ($model->isNewRecord ? 'Create' : 'Save'),
             [
-            'id'    => 'save-'.$model->formName(),
+            'id' => 'save-'.$model->formName(),
             'class' => 'btn btn-success'
             ]
         );
