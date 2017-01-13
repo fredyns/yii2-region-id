@@ -169,9 +169,9 @@ $moduleId = Yii::$app->controller->module->id;
         );
         ?>
 
-        <?php ActiveForm::end(); ?>
-
     </div>
+
+    <?php ActiveForm::end(); ?>
 
 </div>
 

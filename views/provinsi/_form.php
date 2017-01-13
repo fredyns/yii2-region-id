@@ -16,10 +16,10 @@ use yii\helpers\StringHelper;
 
     <?php
     $form = ActiveForm::begin([
-            'id'                     => 'Provinsi',
-            'layout'                 => 'horizontal',
+            'id' => 'Provinsi',
+            'layout' => 'horizontal',
             'enableClientValidation' => true,
-            'errorSummaryCssClass'   => 'error-summary alert alert-error'
+            'errorSummaryCssClass' => 'error-summary alert alert-error'
             ]
     );
     ?>
@@ -39,11 +39,11 @@ use yii\helpers\StringHelper;
         Tabs::widget(
             [
                 'encodeLabels' => false,
-                'items'        => [
+                'items' => [
                     [
-                        'label'   => Yii::t('app', StringHelper::basename('Provinsi')),
+                        'label' => Yii::t('app', StringHelper::basename('Provinsi')),
                         'content' => $this->blocks['main'],
-                        'active'  => true,
+                        'active' => true,
                     ],
                 ]
             ]
@@ -58,15 +58,14 @@ use yii\helpers\StringHelper;
             '<span class="glyphicon glyphicon-check"></span> '.
             ($model->isNewRecord ? 'Create' : 'Save'),
             [
-            'id'    => 'save-'.$model->formName(),
+            'id' => 'save-'.$model->formName(),
             'class' => 'btn btn-success'
             ]
         );
         ?>
 
-        <?php ActiveForm::end(); ?>
-
     </div>
 
-</div>
+    <?php ActiveForm::end(); ?>
 
+</div>

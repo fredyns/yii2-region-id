@@ -14,7 +14,7 @@ use fredyns\daerahIndonesia\models\Provinsi;
  * @var fredyns\daerahIndonesia\models\Kelurahan $model
  * @var yii\widgets\ActiveForm $form
  */
-$moduleId = 'daerah-indonesia'; // Yii::$app->controller->module->id;
+$moduleId = Yii::$app->controller->module->id;
 ?>
 
 <div class="kelurahan-form">

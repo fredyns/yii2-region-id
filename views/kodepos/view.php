@@ -13,7 +13,7 @@ use dmstr\bootstrap\Tabs;
  */
 $copyParams = $model->attributes;
 
-$this->title                   = Yii::t('app', 'Kodepos').' #'.$model->id.', '.'View';
+$this->title = Yii::t('app', 'Kodepos').' #'.$model->id.', '.'View';
 $this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Daerah Indonesia'), 'url' => ['/'.\Yii::$app->controller->module->id]];
 $this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Kodepos'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = ['label' => '#'.$model->id, 'url' => ['view', 'id' => $model->id]];
@@ -33,7 +33,7 @@ $this->params['breadcrumbs'][] = 'View';
     <h1>
         <?= Yii::t('app', 'Kodepos') ?>
         <small>
-           #<?= $model->id ?>
+            #<?= $model->id ?>
         </small>
     </h1>
 
@@ -44,7 +44,7 @@ $this->params['breadcrumbs'][] = 'View';
         <div class='pull-left'>
             <?=
             Html::a(
-                '<span class="glyphicon glyphicon-pencil"></span> '.'Edit', [ 'update', 'id' => $model->id],
+                '<span class="glyphicon glyphicon-pencil"></span> '.'Edit', ['update', 'id' => $model->id],
                 ['class' => 'btn btn-info'])
             ?>
 
@@ -76,33 +76,24 @@ $this->params['breadcrumbs'][] = 'View';
 
     <?=
     DetailView::widget([
-        'model'      => $model,
+        'model' => $model,
         'attributes' => [
-            'id',
             'nomor',
             [
-                'format'    => 'html',
-                'attribute' => 'kelurahan_id',
-                'value'     => ($model->getKelurahan()->one() ? Html::a($model->getKelurahan()->one()->id,
-                        ['kelurahan/view', 'id' => $model->getKelurahan()->one()->id,]) : '<span class="label label-warning">?</span>'),
+                'label' => 'Provinsi',
+                'attribute' => 'provinsi.nama',
             ],
             [
-                'format'    => 'html',
-                'attribute' => 'kecamatan_id',
-                'value'     => ($model->getKecamatan()->one() ? Html::a($model->getKecamatan()->one()->id,
-                        ['kecamatan/view', 'id' => $model->getKecamatan()->one()->id,]) : '<span class="label label-warning">?</span>'),
+                'label' => 'Kota',
+                'attribute' => 'kota.nama',
             ],
             [
-                'format'    => 'html',
-                'attribute' => 'kota_id',
-                'value'     => ($model->getKota()->one() ? Html::a($model->getKota()->one()->id,
-                        ['kota/view', 'id' => $model->getKota()->one()->id,]) : '<span class="label label-warning">?</span>'),
+                'label' => 'Kecamatan',
+                'attribute' => 'kecamatan.nama',
             ],
             [
-                'format'    => 'html',
-                'attribute' => 'provinsi_id',
-                'value'     => ($model->getProvinsi()->one() ? Html::a($model->getProvinsi()->one()->id,
-                        ['provinsi/view', 'id' => $model->getProvinsi()->one()->id,]) : '<span class="label label-warning">?</span>'),
+                'label' => 'Kelurahan',
+                'attribute' => 'kelurahan.nama',
             ],
         ],
     ]);
@@ -114,9 +105,9 @@ $this->params['breadcrumbs'][] = 'View';
     <?=
     Html::a('<span class="glyphicon glyphicon-trash"></span> '.'Delete', ['delete', 'id' => $model->id],
         [
-        'class'        => 'btn btn-danger',
+        'class' => 'btn btn-danger',
         'data-confirm' => ''.'Are you sure to delete this item?'.'',
-        'data-method'  => 'post',
+        'data-method' => 'post',
     ]);
     ?>
     <?php $this->endBlock(); ?>
@@ -126,13 +117,13 @@ $this->params['breadcrumbs'][] = 'View';
     <?=
     Tabs::widget(
         [
-            'id'           => 'relation-tabs',
+            'id' => 'relation-tabs',
             'encodeLabels' => false,
-            'items'        => [
+            'items' => [
                 [
-                    'label'   => '<b class=""># '.$model->id.'</b>',
+                    'label' => '<b class=""># '.$model->id.'</b>',
                     'content' => $this->blocks['Kodepos'],
-                    'active'  => true,
+                    'active' => true,
                 ],
             ]
         ]

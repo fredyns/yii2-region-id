@@ -6,9 +6,9 @@ use yii\helpers\Html;
  * @var yii\web\View $this
  * @var fredyns\daerahIndonesia\models\Kecamatan $model
  */
-$this->title                   = 'Create';
+$this->title = 'Create';
 $this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Daerah Indonesia'), 'url' => ['/'.\Yii::$app->controller->module->id]];
-$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Kecamatans'), 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Kecamatan'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="giiant-crud kecamatan-create">

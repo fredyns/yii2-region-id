@@ -9,31 +9,28 @@ use yii\grid\GridView;
  * @var yii\data\ActiveDataProvider $dataProvider
  * @var fredyns\daerahIndonesia\models\search\KodeposSearch $searchModel
  */
-$this->title                   = Yii::t('app', 'Kodepos');
+$this->title = Yii::t('app', 'Kodepos');
 $this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Daerah Indonesia'), 'url' => ['/'.\Yii::$app->controller->module->id]];
 $this->params['breadcrumbs'][] = $this->title;
 
-if (isset($actionColumnTemplates))
-{
-    $actionColumnTemplate       = implode(' ', $actionColumnTemplates);
+if (isset($actionColumnTemplates)) {
+    $actionColumnTemplate = implode(' ', $actionColumnTemplates);
     $actionColumnTemplateString = $actionColumnTemplate;
-}
-else
-{
+} else {
     Yii::$app->view->params['pageButtons'] = Html::a(
             '<span class="glyphicon glyphicon-plus"></span> '.'New', ['create'], ['class' => 'btn btn-success']
     );
-    $actionColumnTemplateString            = "{view} {update} {delete}";
+    $actionColumnTemplateString = "{view} {update} {delete}";
 }
 ?>
 <div class="giiant-crud kodepos-index">
 
     <?php
     \yii\widgets\Pjax::begin([
-        'id'                 => 'pjax-main',
+        'id' => 'pjax-main',
         'enableReplaceState' => false,
-        'linkSelector'       => '#pjax-main ul.pagination a, th a',
-        'clientOptions'      => ['pjax:success' => 'function(){alert("yo")}'],
+        'linkSelector' => '#pjax-main ul.pagination a, th a',
+        'clientOptions' => ['pjax:success' => 'function(){alert("yo")}'],
     ])
     ?>
 
@@ -55,34 +52,34 @@ else
             <?=
             \yii\bootstrap\ButtonDropdown::widget(
                 [
-                    'id'          => 'giiant-relations',
+                    'id' => 'giiant-relations',
                     'encodeLabel' => false,
-                    'label'       => '<span class="glyphicon glyphicon-paperclip"></span> '.'Relations',
-                    'dropdown'    => [
-                        'options'      => [
+                    'label' => '<span class="glyphicon glyphicon-paperclip"></span> '.'Relations',
+                    'dropdown' => [
+                        'options' => [
                             'class' => 'dropdown-menu-right'
                         ],
                         'encodeLabels' => false,
-                        'items'        => [
+                        'items' => [
                             [
-                                'url'   => ['provinsi/index'],
+                                'url' => ['provinsi/index'],
                                 'label' => '<i class="glyphicon glyphicon-arrow-right">&nbsp;'.'Provinsi'.'</i>',
                             ],
                             [
-                                'url'   => ['kota/index'],
+                                'url' => ['kota/index'],
                                 'label' => '<i class="glyphicon glyphicon-arrow-right">&nbsp;'.'Kota'.'</i>',
                             ],
                             [
-                                'url'   => ['kecamatan/index'],
+                                'url' => ['kecamatan/index'],
                                 'label' => '<i class="glyphicon glyphicon-arrow-right">&nbsp;'.'Kecamatan'.'</i>',
                             ],
                             [
-                                'url'   => ['kelurahan/index'],
+                                'url' => ['kelurahan/index'],
                                 'label' => '<i class="glyphicon glyphicon-arrow-right">&nbsp;'.'Kelurahan'.'</i>',
                             ],
                         ]
                     ],
-                    'options'     => [
+                    'options' => [
                         'class' => 'btn-default'
                     ]
                 ]
@@ -96,98 +93,41 @@ else
     <div class="table-responsive">
         <?=
         GridView::widget([
-            'layout'           => '{summary}{pager}{items}{pager}',
-            'dataProvider'     => $dataProvider,
-            'pager'            => [
-                'class'          => yii\widgets\LinkPager::className(),
+            'layout' => '{summary}{pager}{items}{pager}',
+            'dataProvider' => $dataProvider,
+            'pager' => [
+                'class' => yii\widgets\LinkPager::className(),
                 'firstPageLabel' => 'First',
-                'lastPageLabel'  => 'Last',
+                'lastPageLabel' => 'Last',
             ],
-            'filterModel'      => $searchModel,
-            'tableOptions'     => ['class' => 'table table-striped table-bordered table-hover'],
+            'filterModel' => $searchModel,
+            'tableOptions' => ['class' => 'table table-striped table-bordered table-hover'],
             'headerRowOptions' => ['class' => 'x'],
-            'columns'          => [
+            'columns' => [
                 [
-                    'class'      => 'yii\grid\ActionColumn',
-                    'options'    => [],
-                    'template'   => $actionColumnTemplateString,
-                    'urlCreator' => function($action, $model, $key, $index)
-                {
-                    // using the column name as key, not mapping to 'id' like the standard generator
-                    $params    = is_array($key) ? $key : [$model->primaryKey()[0] => (string) $key];
-                    $params[0] = \Yii::$app->controller->id ? \Yii::$app->controller->id.'/'.$action : $action;
-                    return Url::toRoute($params);
-                },
+                    'class' => 'yii\grid\ActionColumn',
+                    'options' => [],
+                    'template' => $actionColumnTemplateString,
+                    'urlCreator' => function($action, $model, $key, $index) {
+                        // using the column name as key, not mapping to 'id' like the standard generator
+                        $params = is_array($key) ? $key : [$model->primaryKey()[0] => (string) $key];
+                        $params[0] = \Yii::$app->controller->id ? \Yii::$app->controller->id.'/'.$action : $action;
+                        return Url::toRoute($params);
+                    },
                     'contentOptions' => ['nowrap' => 'nowrap']
                 ],
                 'nomor',
                 [
-                    'class'     => yii\grid\DataColumn::className(),
-                    'options'   => [],
-                    'attribute' => 'kelurahan_id',
-                    'value'     => function ($model)
-                {
-                    if ($rel = $model->getKelurahan()->one())
-                    {
-                        return Html::a($rel->id, ['kelurahan/view', 'id' => $rel->id,], ['data-pjax' => 0]);
-                    }
-                    else
-                    {
-                        return '';
-                    }
-                },
-                    'format' => 'raw',
+                    'label' => 'Kota',
+                    'attribute' => 'kota.nama',
                 ],
                 [
-                    'class'     => yii\grid\DataColumn::className(),
-                    'options'   => [],
-                    'attribute' => 'kecamatan_id',
-                    'value'     => function ($model)
-                {
-                    if ($rel = $model->getKecamatan()->one())
-                    {
-                        return Html::a($rel->id, ['kecamatan/view', 'id' => $rel->id,], ['data-pjax' => 0]);
-                    }
-                    else
-                    {
-                        return '';
-                    }
-                },
-                    'format' => 'raw',
+                    'label' => 'Kecamatan',
+                    'attribute' => 'kecamatan.nama',
                 ],
                 [
-                    'class'     => yii\grid\DataColumn::className(),
-                    'options'   => [],
-                    'attribute' => 'kota_id',
-                    'value'     => function ($model)
-                {
-                    if ($rel = $model->getKota()->one())
-                    {
-                        return Html::a($rel->id, ['kota/view', 'id' => $rel->id,], ['data-pjax' => 0]);
-                    }
-                    else
-                    {
-                        return '';
-                    }
-                },
-                    'format' => 'raw',
-                ],
-                [
-                    'class'     => yii\grid\DataColumn::className(),
-                    'options'   => [],
-                    'attribute' => 'provinsi_id',
-                    'value'     => function ($model)
-                {
-                    if ($rel = $model->getProvinsi()->one())
-                    {
-                        return Html::a($rel->id, ['provinsi/view', 'id' => $rel->id,], ['data-pjax' => 0]);
-                    }
-                    else
-                    {
-                        return '';
-                    }
-                },
-                    'format' => 'raw',
+                    'label' => 'Kelurahan',
+                    'attribute' => 'kelurahan.nama',
                 ],
             ],
         ]);
