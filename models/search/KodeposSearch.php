@@ -8,53 +8,55 @@ use yii\data\ActiveDataProvider;
 use fredyns\daerahIndonesia\models\Kodepos;
 
 /**
-* KodeposSearch represents the model behind the search form about `fredyns\daerahIndonesia\models\Kodepos`.
-*/
+ * KodeposSearch represents the model behind the search form about `fredyns\daerahIndonesia\models\Kodepos`.
+ */
 class KodeposSearch extends Kodepos
 {
-/**
-* @inheritdoc
-*/
-public function rules()
-{
-return [
-[['id', 'created_at', 'updated_at', 'created_by', 'updated_by', 'nomor', 'kelurahan_id', 'kecamatan_id', 'kota_id', 'provinsi_id'], 'integer'],
-];
-}
 
-/**
-* @inheritdoc
-*/
-public function scenarios()
-{
-// bypass scenarios() implementation in the parent class
-return Model::scenarios();
-}
+    /**
+     * @inheritdoc
+     */
+    public function rules()
+    {
+        return [
+            [['id', 'created_at', 'updated_at', 'created_by', 'updated_by', 'nomor', 'kelurahan_id', 'kecamatan_id', 'kota_id',
+                'provinsi_id'], 'integer'],
+        ];
+    }
 
-/**
-* Creates data provider instance with search query applied
-*
-* @param array $params
-*
-* @return ActiveDataProvider
-*/
-public function search($params)
-{
-$query = Kodepos::find();
+    /**
+     * @inheritdoc
+     */
+    public function scenarios()
+    {
+        // bypass scenarios() implementation in the parent class
+        return Model::scenarios();
+    }
 
-$dataProvider = new ActiveDataProvider([
-'query' => $query,
-]);
+    /**
+     * Creates data provider instance with search query applied
+     *
+     * @param array $params
+     *
+     * @return ActiveDataProvider
+     */
+    public function search($params)
+    {
+        $query = Kodepos::find();
 
-$this->load($params);
+        $dataProvider = new ActiveDataProvider([
+            'query' => $query,
+        ]);
 
-if (!$this->validate()) {
-// uncomment the following line if you do not want to any records when validation fails
-// $query->where('0=1');
-return $dataProvider;
-}
+        $this->load($params);
 
-$query->andFilterWhere([
+        if (!$this->validate()) {
+            // uncomment the following line if you do not want to any records when validation fails
+            // $query->where('0=1');
+            return $dataProvider;
+        }
+
+        $query->andFilterWhere([
             'id' => $this->id,
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
@@ -67,6 +69,6 @@ $query->andFilterWhere([
             'provinsi_id' => $this->provinsi_id,
         ]);
 
-return $dataProvider;
-}
+        return $dataProvider;
+    }
 }
