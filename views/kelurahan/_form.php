@@ -14,7 +14,6 @@ use fredyns\daerahIndonesia\models\Provinsi;
  * @var fredyns\daerahIndonesia\models\Kelurahan $model
  * @var yii\widgets\ActiveForm $form
  */
-$moduleId = Yii::$app->controller->module->id;
 ?>
 
 <div class="kelurahan-form">
@@ -57,7 +56,7 @@ $moduleId = Yii::$app->controller->module->id;
                         'placeholder' => 'Pilih atau ketik nama Kecamatan',
                         'depends' => ['kelurahan-kota_id'],
                         'url' => Url::to([
-                            "/{$moduleId}/kecamatan/depdrop-options",
+                            "kecamatan/depdrop-options",
                             'selected' => $model->kecamatan_id,
                         ]),
                         'loadingText' => 'Memuat Kecamatan ...',
@@ -85,7 +84,7 @@ $moduleId = Yii::$app->controller->module->id;
                         'placeholder' => 'Pilih atau ketik nama Kota',
                         'depends' => ['kelurahan-provinsi_id'],
                         'url' => Url::to([
-                            "/{$moduleId}/kota/depdrop-options",
+                            "kota/depdrop-options",
                             'selected' => $model->kota_id,
                         ]),
                         'loadingText' => 'Memuat Kota ...',

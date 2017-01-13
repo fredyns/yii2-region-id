@@ -13,7 +13,6 @@ use fredyns\daerahIndonesia\models\Provinsi;
  * @var fredyns\daerahIndonesia\models\Kota $model
  * @var yii\widgets\ActiveForm $form
  */
-$moduleId = Yii::$app->controller->module->id;
 ?>
 
 <div class="kota-form">
