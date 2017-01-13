@@ -84,7 +84,7 @@ abstract class Kecamatan extends \yii\db\ActiveRecord
             'updated_by' => 'Updated By',
             'nomor'      => 'Nomor',
             'nama'       => 'Nama',
-            'kota_id'    => 'Kota ID',
+            'kota_id'    => 'Kota',
         ];
     }
 

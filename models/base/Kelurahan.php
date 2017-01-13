@@ -77,7 +77,7 @@ abstract class Kelurahan extends \yii\db\ActiveRecord
             'updated_by'   => 'Updated By',
             'nomor'        => 'Nomor',
             'nama'         => 'Nama',
-            'kecamatan_id' => 'Kecamatan ID',
+            'kecamatan_id' => 'Kecamatan',
         ];
     }
 

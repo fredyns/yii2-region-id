@@ -80,7 +80,7 @@ abstract class Kota extends \yii\db\ActiveRecord
             'nomor'       => 'Nomor',
             'nama'        => 'Nama',
             'singkatan'   => 'Singkatan',
-            'provinsi_id' => 'Provinsi ID',
+            'provinsi_id' => 'Provinsi',
         ];
     }
 

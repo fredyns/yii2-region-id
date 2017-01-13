@@ -81,10 +81,10 @@ abstract class Kodepos extends \yii\db\ActiveRecord
             'created_by'   => 'Created By',
             'updated_by'   => 'Updated By',
             'nomor'        => 'Nomor',
-            'kelurahan_id' => 'Kelurahan ID',
-            'kecamatan_id' => 'Kecamatan ID',
-            'kota_id'      => 'Kota ID',
-            'provinsi_id'  => 'Provinsi ID',
+            'kelurahan_id' => 'Kelurahan',
+            'kecamatan_id' => 'Kecamatan',
+            'kota_id'      => 'Kota',
+            'provinsi_id'  => 'Provinsi',
         ];
     }
 
