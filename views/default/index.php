@@ -35,6 +35,8 @@ $this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Daerah Indonesia'), 
         ?>
     </p>
 
+    <hr/>
+
     <h3>Contoh Formulir</h3>
 
     <div class="sample-form">
@@ -159,6 +161,16 @@ $this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Daerah Indonesia'), 
         <?php ActiveForm::end(); ?>
 
     </div>
+
+    <hr/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
 
 
 </div>
