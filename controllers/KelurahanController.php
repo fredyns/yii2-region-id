@@ -23,7 +23,7 @@ class KelurahanController extends \fredyns\daerahIndonesia\controllers\base\Kelu
             'idField' => 'id',
             'nameField' => 'nama',
             'parents' => [
-                'provinsi_id' => function($value) {
+                'kecamatan_id' => function($value) {
                     return ($value > 0) ? $value : "";
                 },
             ],

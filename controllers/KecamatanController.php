@@ -28,8 +28,6 @@ class KecamatanController extends \fredyns\daerahIndonesia\controllers\base\Keca
                 },
             ],
             'selected' => $selected,
-            'id' => 'id',
-            'name' => 'nama',
         ]);
     }
 }
