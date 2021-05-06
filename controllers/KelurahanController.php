@@ -3,6 +3,7 @@
 namespace fredyns\daerahIndonesia\controllers;
 
 use fredyns\daerahIndonesia\models\Kelurahan;
+use yii\web\Response;
 
 /**
  * This is the class for controller "KelurahanController".
@@ -18,7 +19,8 @@ class KelurahanController extends \fredyns\daerahIndonesia\controllers\base\Kelu
      */
     public function actionDepdropOptions($selected = 0)
     {
-        echo \fredyns\daerahIndonesia\helpers\DepdropHelper::getOptionData([
+        \Yii::$app->response->format = Response::FORMAT_JSON;
+        return \fredyns\daerahIndonesia\helpers\DepdropHelper::getOptionData([
             'modelClass' => Kelurahan::className(),
             'idField' => 'id',
             'nameField' => 'nama',

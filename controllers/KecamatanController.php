@@ -3,6 +3,7 @@
 namespace fredyns\daerahIndonesia\controllers;
 
 use fredyns\daerahIndonesia\models\Kecamatan;
+use yii\web\Response;
 
 /**
  * This is the class for controller "KecamatanController".
@@ -18,7 +19,8 @@ class KecamatanController extends \fredyns\daerahIndonesia\controllers\base\Keca
      */
     public function actionDepdropOptions($selected = 0)
     {
-        echo \fredyns\daerahIndonesia\helpers\DepdropHelper::getOptionData([
+        \Yii::$app->response->format = Response::FORMAT_JSON;
+        return \fredyns\daerahIndonesia\helpers\DepdropHelper::getOptionData([
             'modelClass' => Kecamatan::className(),
             'idField' => 'id',
             'nameField' => 'nama',

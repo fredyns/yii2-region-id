@@ -2,10 +2,8 @@
 
 namespace fredyns\daerahIndonesia\controllers;
 
-use fredyns\daerahIndonesia\models\Provinsi;
 use fredyns\daerahIndonesia\models\Kota;
-use fredyns\daerahIndonesia\models\Kecamatan;
-use fredyns\daerahIndonesia\models\Kelurahan;
+use yii\web\Response;
 
 /**
  * This is the class for controller "KotaController".
@@ -21,12 +19,13 @@ class KotaController extends \fredyns\daerahIndonesia\controllers\base\KotaContr
      */
     public function actionDepdropOptions($selected = 0)
     {
-        echo \fredyns\daerahIndonesia\helpers\DepdropHelper::getOptionData([
+        \Yii::$app->response->format = Response::FORMAT_JSON;
+        return \fredyns\daerahIndonesia\helpers\DepdropHelper::getOptionData([
             'modelClass' => Kota::className(),
             'idField' => 'id',
             'nameField' => 'nama',
             'parents' => [
-                'provinsi_id' => function($value) {
+                'provinsi_id' => function ($value) {
                     return ($value > 0) ? $value : "";
                 },
             ],

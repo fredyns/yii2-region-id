@@ -3,7 +3,6 @@
 namespace fredyns\daerahIndonesia\helpers;
 
 use yii\helpers\ArrayHelper;
-use yii\helpers\Json;
 
 /**
  * generate option data for depdrop widget
@@ -43,7 +42,7 @@ class DepdropHelper
             $output = ArrayHelper::toArray($data, [$modelClass => ['id' => $idField, 'name' => $nameField]]);
         }
 
-        return Json::encode(['output' => $output, 'selected' => $selected]);
+        return ['output' => $output, 'selected' => $selected];
     }
 
     /**
