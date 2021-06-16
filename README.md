@@ -1,56 +1,37 @@
-# yii2-daerah-indonesia
+# yii2-region-id
 
-**Ekstensi Yii2 Berisi Daerah dan Kodepos Seluruh Indonesia**
+**Indonesia regional & postcode database as Yii2 Extension**
 
-Database daerah sesuai Permendagri no 39 tahun 2015.
+Database based on Minister of Home Affairs Regulation (Permendagri no 39 tahun 2015).
 
 
-Instalasi
+Installation
 ---------
 
-    composer require fredyns/yii2-daerah-indonesia:"@dev"
+    composer require fredyns/yii2-region-id:"@dev"
 
-Kemudian import file .sql yg ada di folder `mysqldump`
-
-
-Konfigurasi
+Config
 -----------
 
-Tambahkan konfigurasi berikut:
-
     'modules' => [
-        'daerah-indonesia' => [
-            'class' => 'fredyns\daerahIndonesia\Module',
+        'region' => [
+            'class' => 'fredyns\region\Module',
         ],
     ],
 
 
-Penggunaan
+Usage
 ----------
 
-Buka aplikasi anda melalui browser dan buka alamat `/daerah-indonesia`.
-atau sesuaikan dgn konfigurasi module yg digunakan.
+Open address `/region`
 
-Pada halaman depan (`daerah-indonesia/default/index`) terdapat contoh formulir pengisian data daerah.
-Input formnya menggunakan compobox bertingkat.
-Menggunakan library `kartik-v/yii2-widget-select2`.
-
-Pilih provinsi, lalu mmuncul opsi kota.
-Pilih kota, lalu muncul opsi kecamatan.
-Dan seterusnya.
-
-Selain itu dimungkinkan untuk menambahkan wilayah baru yg belum terdaftar.
-Nantinya aka ditangani oleh Class-Behavior yg otomatis meng-insert data baru.
-Untuk mencoba, bisa memasukkan nomor kodepos dgn data wilayah yg baru semua.
-
-Contohnya seperti berikut:
-
-![giiant-0 2-screen-1](https://scontent-sin6-1.xx.fbcdn.net/v/t31.0-8/15936390_751102618376532_6915148262999836326_o.jpg?oh=6c3d553496ba0736bf95c433f896ea42&oe=58DCB5E2)
+Try address form, new region will be added automatically.
 
 
-Ucapan terimakasih khusus untuk om Cahya yg saya copy [database daerahnya](https://github.com/cahyadsn/daerah) :D
-Serta **edwinkun** yg saya copy data [kodeposnya](https://github.com/edwinkun/database-kodepos-seluruh-indonesia)
-Keduanya sudah saya join supaya bisa lebih bermanfaat.
+Thanks
+----------
+[database daerah by cahyadsn](https://github.com/cahyadsn/daerah)
+[kodepos by edwinkun](https://github.com/edwinkun/database-kodepos-seluruh-indonesia)
 
 
-Dibuat oleh [fredyns](http://fredyns.net)
+created by [fredyns](http://fredyns.net)
