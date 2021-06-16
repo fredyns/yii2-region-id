@@ -1,11 +1,12 @@
 {
-    "name": "fredyns/yii2-daerah-indonesia",
-    "description": "Extensi Yii2 berisi database wilayah Indonesia",
+    "name": "fredyns/yii2-region-id",
+    "description": "Indonesia regional & postcode database as Yii2 Extension",
     "type": "yii2-extension",
     "keywords": [
         "yii2",
         "extension",
         "lbac",
+        "regional database",
         "database-wilayah",
         "indonesia"
     ],
@@ -23,7 +24,7 @@
     },
     "autoload": {
         "psr-4": {
-            "fredyns\\daerahIndonesia\\": ""
+            "fredyns\\region\\": ""
         }
     }
 }
