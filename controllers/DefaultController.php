@@ -1,11 +1,11 @@
 <?php
 
-namespace fredyns\daerahIndonesia\controllers;
+namespace fredyns\region\controllers;
 
 use yii\web\Controller;
 
 /**
- * Default controller for the `daerahIndonesia` module
+ * Default controller for the `region` module
  */
 class DefaultController extends Controller
 {
