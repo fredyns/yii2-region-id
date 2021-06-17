@@ -43,6 +43,15 @@ class District extends \yii\db\ActiveRecord
     }
 
     /**
+     * @inheritdoc
+     */
+    public function afterFind()
+    {
+        parent::afterFind();
+        $this->province_id = $this->city->province_id;
+    }
+
+    /**
      * @return array
      */
     public function behaviors()

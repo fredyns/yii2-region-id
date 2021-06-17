@@ -49,6 +49,17 @@ class Postcode extends \yii\db\ActiveRecord
     }
 
     /**
+     * @inheritdoc
+     */
+    public function afterFind()
+    {
+        parent::afterFind();
+        $this->district_id = $this->subdistrict->district_id;
+        $this->city_id = $this->subdistrict->district->city_id;
+        $this->province_id = $this->subdistrict->district->city->province_id;
+    }
+
+    /**
      * @return array
      */
     public function behaviors()

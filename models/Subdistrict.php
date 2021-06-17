@@ -44,6 +44,16 @@ class Subdistrict extends \yii\db\ActiveRecord
     }
 
     /**
+     * @inheritdoc
+     */
+    public function afterFind()
+    {
+        parent::afterFind();
+        $this->city_id = $this->district->city_id;
+        $this->province_id = $this->district->city->province_id;
+    }
+
+    /**
      * @return array
      */
     public function behaviors()
