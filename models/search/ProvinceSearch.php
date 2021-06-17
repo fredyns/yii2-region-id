@@ -1,16 +1,15 @@
 <?php
 
-namespace fredyns\daerahIndonesia\models\search;
+namespace fredyns\region\models\search;
 
-use Yii;
+use fredyns\region\models\Province;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use fredyns\daerahIndonesia\models\Kota;
 
 /**
- * KotaSearch represents the model behind the search form about `fredyns\daerahIndonesia\models\Kota`.
+ * ProvinceSearch represents the model behind the search form about `fredyns\region\models\Province`.
  */
-class KotaSearch extends Kota
+class ProvinceSearch extends Province
 {
 
     /**
@@ -19,8 +18,8 @@ class KotaSearch extends Kota
     public function rules()
     {
         return [
-            [['id', 'created_at', 'updated_at', 'created_by', 'updated_by', 'provinsi_id'], 'integer'],
-            [['nomor', 'nama', 'singkatan'], 'safe'],
+            [['id', 'number'], 'integer'],
+            [['name'], 'safe'],
         ];
     }
 
@@ -42,7 +41,7 @@ class KotaSearch extends Kota
      */
     public function search($params)
     {
-        $query = Kota::find();
+        $query = Province::find();
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
@@ -58,17 +57,11 @@ class KotaSearch extends Kota
 
         $query->andFilterWhere([
             'id' => $this->id,
-            'created_at' => $this->created_at,
-            'updated_at' => $this->updated_at,
-            'created_by' => $this->created_by,
-            'updated_by' => $this->updated_by,
-            'provinsi_id' => $this->provinsi_id,
+            'number' => $this->number,
         ]);
 
         $query
-            ->andFilterWhere(['like', 'nomor', $this->nomor])
-            ->andFilterWhere(['like', 'nama', $this->nama])
-            ->andFilterWhere(['like', 'singkatan', $this->singkatan]);
+            ->andFilterWhere(['like', 'name', $this->name]);
 
         return $dataProvider;
     }

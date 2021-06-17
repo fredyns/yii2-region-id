@@ -1,16 +1,15 @@
 <?php
 
-namespace fredyns\daerahIndonesia\models\search;
+namespace fredyns\region\models\search;
 
-use Yii;
+use fredyns\region\models\District;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use fredyns\daerahIndonesia\models\Kecamatan;
 
 /**
- * KecamatanSearch represents the model behind the search form about `fredyns\daerahIndonesia\models\Kecamatan`.
+ * DistrictSearch represents the model behind the search form about `fredyns\region\models\District`.
  */
-class KecamatanSearch extends Kecamatan
+class DistrictSearch extends District
 {
 
     /**
@@ -19,8 +18,8 @@ class KecamatanSearch extends Kecamatan
     public function rules()
     {
         return [
-            [['id', 'created_at', 'updated_at', 'created_by', 'updated_by', 'kota_id'], 'integer'],
-            [['nomor', 'nama'], 'safe'],
+            [['id', 'number', 'city_id'], 'integer'],
+            [['name'], 'safe'],
         ];
     }
 
@@ -42,7 +41,7 @@ class KecamatanSearch extends Kecamatan
      */
     public function search($params)
     {
-        $query = Kecamatan::find();
+        $query = District::find()->with('city');
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
@@ -58,16 +57,12 @@ class KecamatanSearch extends Kecamatan
 
         $query->andFilterWhere([
             'id' => $this->id,
-            'created_at' => $this->created_at,
-            'updated_at' => $this->updated_at,
-            'created_by' => $this->created_by,
-            'updated_by' => $this->updated_by,
-            'kota_id' => $this->kota_id,
+            'number' => $this->number,
+            'city_id' => $this->city_id,
         ]);
 
         $query
-            ->andFilterWhere(['like', 'nomor', $this->nomor])
-            ->andFilterWhere(['like', 'nama', $this->nama]);
+            ->andFilterWhere(['like', 'name', $this->name]);
 
         return $dataProvider;
     }

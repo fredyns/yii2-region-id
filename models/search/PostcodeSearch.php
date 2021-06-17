@@ -1,16 +1,15 @@
 <?php
 
-namespace fredyns\daerahIndonesia\models\search;
+namespace fredyns\region\models\search;
 
-use Yii;
+use fredyns\region\models\Postcode;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use fredyns\daerahIndonesia\models\Provinsi;
 
 /**
- * ProvinsiSearch represents the model behind the search form about `fredyns\daerahIndonesia\models\Provinsi`.
+ * PostcodeSearch represents the model behind the search form about `fredyns\region\models\Postcode`.
  */
-class ProvinsiSearch extends Provinsi
+class PostcodeSearch extends Postcode
 {
 
     /**
@@ -19,8 +18,7 @@ class ProvinsiSearch extends Provinsi
     public function rules()
     {
         return [
-            [['id', 'created_at', 'updated_at', 'created_by', 'updated_by'], 'integer'],
-            [['nomor', 'nama', 'singkatan'], 'safe'],
+            [['id', 'number', 'subdistrict_id'], 'integer'],
         ];
     }
 
@@ -42,7 +40,8 @@ class ProvinsiSearch extends Provinsi
      */
     public function search($params)
     {
-        $query = Provinsi::find();
+        $query = Postcode::find()
+            ->with('subdistrict', 'subdistrict.district', 'subdistrict.district.city');
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
@@ -58,16 +57,9 @@ class ProvinsiSearch extends Provinsi
 
         $query->andFilterWhere([
             'id' => $this->id,
-            'created_at' => $this->created_at,
-            'updated_at' => $this->updated_at,
-            'created_by' => $this->created_by,
-            'updated_by' => $this->updated_by,
+            'number' => $this->number,
+            'subdistrict_id' => $this->subdistrict_id,
         ]);
-
-        $query
-            ->andFilterWhere(['like', 'nomor', $this->nomor])
-            ->andFilterWhere(['like', 'nama', $this->nama])
-            ->andFilterWhere(['like', 'singkatan', $this->singkatan]);
 
         return $dataProvider;
     }

@@ -1,16 +1,15 @@
 <?php
 
-namespace fredyns\daerahIndonesia\models\search;
+namespace fredyns\region\models\search;
 
-use Yii;
+use fredyns\region\models\Subdistrict;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use fredyns\daerahIndonesia\models\Kelurahan;
 
 /**
- * KelurahanSearch represents the model behind the search form about `fredyns\daerahIndonesia\models\Kelurahan`.
+ * SubdistrictSearch represents the model behind the search form about `fredyns\region\models\Subdistrict`.
  */
-class KelurahanSearch extends Kelurahan
+class SubdistrictSearch extends Subdistrict
 {
 
     /**
@@ -19,8 +18,8 @@ class KelurahanSearch extends Kelurahan
     public function rules()
     {
         return [
-            [['id', 'created_at', 'updated_at', 'created_by', 'updated_by', 'kecamatan_id'], 'integer'],
-            [['nomor', 'nama'], 'safe'],
+            [['id', 'number', 'district_id'], 'integer'],
+            [['name'], 'safe'],
         ];
     }
 
@@ -42,7 +41,7 @@ class KelurahanSearch extends Kelurahan
      */
     public function search($params)
     {
-        $query = Kelurahan::find();
+        $query = Subdistrict::find()->with('district', 'district.city');
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
@@ -58,16 +57,12 @@ class KelurahanSearch extends Kelurahan
 
         $query->andFilterWhere([
             'id' => $this->id,
-            'created_at' => $this->created_at,
-            'updated_at' => $this->updated_at,
-            'created_by' => $this->created_by,
-            'updated_by' => $this->updated_by,
-            'kecamatan_id' => $this->kecamatan_id,
+            'number' => $this->number,
+            'district_id' => $this->district_id,
         ]);
 
         $query
-            ->andFilterWhere(['like', 'nomor', $this->nomor])
-            ->andFilterWhere(['like', 'nama', $this->nama]);
+            ->andFilterWhere(['like', 'name', $this->name]);
 
         return $dataProvider;
     }

@@ -1,16 +1,15 @@
 <?php
 
-namespace fredyns\daerahIndonesia\models\search;
+namespace fredyns\region\models\search;
 
-use Yii;
+use fredyns\region\models\City;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use fredyns\daerahIndonesia\models\Kodepos;
 
 /**
- * KodeposSearch represents the model behind the search form about `fredyns\daerahIndonesia\models\Kodepos`.
+ * CitySearch represents the model behind the search form about `fredyns\region\models\City`.
  */
-class KodeposSearch extends Kodepos
+class CitySearch extends City
 {
 
     /**
@@ -19,8 +18,8 @@ class KodeposSearch extends Kodepos
     public function rules()
     {
         return [
-            [['id', 'created_at', 'updated_at', 'created_by', 'updated_by', 'nomor', 'kelurahan_id', 'kecamatan_id', 'kota_id',
-                'provinsi_id'], 'integer'],
+            [['id', 'number', 'province_id'], 'integer'],
+            [['name',], 'safe'],
         ];
     }
 
@@ -42,7 +41,7 @@ class KodeposSearch extends Kodepos
      */
     public function search($params)
     {
-        $query = Kodepos::find();
+        $query = City::find()->with('province');
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
@@ -58,16 +57,12 @@ class KodeposSearch extends Kodepos
 
         $query->andFilterWhere([
             'id' => $this->id,
-            'created_at' => $this->created_at,
-            'updated_at' => $this->updated_at,
-            'created_by' => $this->created_by,
-            'updated_by' => $this->updated_by,
-            'nomor' => $this->nomor,
-            'kelurahan_id' => $this->kelurahan_id,
-            'kecamatan_id' => $this->kecamatan_id,
-            'kota_id' => $this->kota_id,
-            'provinsi_id' => $this->provinsi_id,
+            'number' => $this->number,
+            'province_id' => $this->province_id,
         ]);
+
+        $query
+            ->andFilterWhere(['like', 'name', $this->name]);
 
         return $dataProvider;
     }
