@@ -19,7 +19,6 @@
     ],
     "require": {
         "yiisoft/yii2": "*",
-        "cornernote/yii2-returnurl": "*",
         "kartik-v/yii2-widget-select2": "@dev"
     },
     "autoload": {
