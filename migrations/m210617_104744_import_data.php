@@ -31,7 +31,7 @@ class m210617_104744_import_data extends Migration
         $limitProvince = 100;
         $limitCity = 10000;
         $limitDistrict = 1000000;
-        $data = require __DIR__ . '/_wilayah_2020.php';
+        $data = require __DIR__ . '/_region_2020.php';
         foreach ($data as $number => $name) {
 
             if ($number < $limitProvince) {
