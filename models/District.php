@@ -48,7 +48,7 @@ class District extends \yii\db\ActiveRecord
     public function afterFind()
     {
         parent::afterFind();
-        $this->province_id = $this->city->province_id;
+        $this->province_id = $this->city ? $this->city->province_id : null;
     }
 
     /**

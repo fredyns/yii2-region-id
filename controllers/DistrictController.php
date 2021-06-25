@@ -24,7 +24,6 @@ class DistrictController extends Controller
                 'class' => \fredyns\region\actions\DepdropOptions::class,
                 'modelClass' => \fredyns\region\models\District::class,
                 'parentAttributes' => [
-                    'province_id',
                     'city_id',
                 ],
             ],

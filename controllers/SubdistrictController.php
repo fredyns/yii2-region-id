@@ -23,8 +23,6 @@ class SubdistrictController extends Controller
                 'class' => \fredyns\region\actions\DepdropOptions::class,
                 'modelClass' => \fredyns\region\models\Subdistrict::class,
                 'parentAttributes' => [
-                    'province_id',
-                    'city_id',
                     'district_id',
                 ],
             ],
