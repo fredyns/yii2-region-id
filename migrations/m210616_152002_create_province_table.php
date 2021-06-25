@@ -17,7 +17,7 @@ class m210616_152002_create_province_table extends Migration
         $table = '{{%region_province}}';
         $this->createTable($table, [
             'id' => $this->primaryKey(),
-            'number' => $this->integer(),
+            'number' => $this->integer()->defaultValue(null),
             'name' => $this->string(),
         ]);
         $this->createIndex('i_rgn_province_number', $table, 'number');

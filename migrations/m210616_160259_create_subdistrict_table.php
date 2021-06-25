@@ -16,8 +16,8 @@ class m210616_160259_create_subdistrict_table extends Migration
     {
         $table = '{{%region_subdistrict}}';
         $this->createTable($table, [
-            'id' => $this->primaryKey(),
-            'number' => $this->integer(),
+            'id' => $this->bigPrimaryKey(),
+            'number' => $this->bigInteger()->defaultValue(null),
             'name' => $this->string(),
             'district_id' => $this->integer()->defaultValue(null),
         ]);

@@ -21,7 +21,7 @@ class m210622_215753_import_postcode extends Migration
             return true;
         }
 
-        $this->batchInsert(Postcode::tableName(), ['number', 'subdistrict_id'], __DIR__ . '/_postcode.php');
+        $this->batchInsert(Postcode::tableName(), ['number', 'subdistrict_id'], require __DIR__ . '/_postcode.php');
     }
 
     /**

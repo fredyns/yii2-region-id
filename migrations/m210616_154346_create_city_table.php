@@ -17,7 +17,7 @@ class m210616_154346_create_city_table extends Migration
         $table = '{{%region_city}}';
         $this->createTable($table, [
             'id' => $this->primaryKey(),
-            'number' => $this->integer(),
+            'number' => $this->integer()->defaultValue(null),
             'name' => $this->string(),
             'province_id' => $this->integer()->defaultValue(null),
         ]);

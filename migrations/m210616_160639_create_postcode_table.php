@@ -16,9 +16,9 @@ class m210616_160639_create_postcode_table extends Migration
     {
         $table = '{{%region_postcode}}';
         $this->createTable($table, [
-            'id' => $this->primaryKey(),
+            'id' => $this->bigPrimaryKey(),
             'number' => $this->integer(),
-            'subdistrict_id' => $this->integer()->defaultValue(null),
+            'subdistrict_id' => $this->bigInteger()->defaultValue(null),
         ]);
         $this->createIndex('i_rgn_postcode_number', $table, 'number');
         $this->createIndex('i_rgn_postcode_subdistrict', $table, 'subdistrict_id');
