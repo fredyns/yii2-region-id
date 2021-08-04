@@ -13,12 +13,34 @@ Installation
 Config
 -----------
 
+in web.php or common.php to activate module
+```php
     'modules' => [
         'region' => [
             'class' => 'fredyns\region\Module',
         ],
     ],
+```
 
+in console.php
+```php
+    'controllerMap' => [
+        'migrate' => [
+            'class' => 'yii\console\controllers\MigrateController',
+            'migrationNamespaces' => [
+                'fredyns\region\migrations',
+            ],
+        ],
+    ],
+```
+
+Migration
+----------
+
+```
+yii migrate
+```
+if you config console.php properly in latest yii, it will detect migration inside vendor folder
 
 Usage
 ----------
